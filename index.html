@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Content Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            text-align: center;
+        }
+        .content {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="rssFeed" class="content visible">
+            <h2>Latest News</h2>
+            <div id="rssContent">Loading RSS feed...</div>
+        </div>
+
+        <div id="dailyMenu" class="content">
+            <h2>Today's Menu</h2>
+            <ul id="menuContent">Loading menu...</ul>
+        </div>
+
+        <div id="weatherForecast" class="content">
+            <h2>Weather Forecast</h2>
+            <div id="weatherContent">Loading weather forecast...</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle content rotation and data fetching
+
+        // URLs for RSS feed, menu, and weather data
+        const RSS_FEED_URL = 'https://example.com/rss';  // Replace with actual RSS feed URL
+        const MENU_API_URL = 'https://example.com/menu';  // Replace with actual Google Sheets API or CSV URL
+        const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY&units=metric';  // Replace with your API key
+
+        // Elements to display content
+        const rssFeedDiv = document.getElementById('rssContent');
+        const menuDiv = document.getElementById('menuContent');
+        const weatherDiv = document.getElementById('weatherContent');
+
+        // Fetch RSS feed
+        async function fetchRSSFeed() {
+            try {
+                const response = await fetch(RSS_FEED_URL);
+                const data = await response.text();
+                const parser = new DOMParser();
+                const rssDoc = parser.parseFromString(data, "application/xml");
+                const items = rssDoc.querySelectorAll("item");
+                let rssContent = '';
+
+                items.forEach(item => {
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    rssContent += `<p><a href="${link}" target="_blank">${title}</a></p>`;
+                });
+
+                rssFeedDiv.innerHTML = rssContent || "No news available.";
+            } catch (error) {
+                rssFeedDiv.innerHTML = "Failed to load RSS feed.";
+                console.error("Error fetching RSS feed:", error);
+            }
+        }
+
+        // Fetch Daily Menu
+        async function fetchDailyMenu() {
+            try {
+                const response = await fetch(MENU_API_URL);
+                const menuItems = await response.json();  // Adjust based on your data structure (could also be CSV)
+                let menuContent = '';
+
+                menuItems.forEach(item => {
+                    menuContent += `<li>${item.meal}: ${item.dish}</li>`;
+                });
+
+                menuDiv.innerHTML = menuContent || "Menu not available.";
+            } catch (error) {
+                menuDiv.innerHTML = "Failed to load menu.";
+                console.error("Error fetching menu:", error);
+            }
+        }
+
+        // Fetch Weather Forecast
+        async function fetchWeather() {
+            try {
+                const response = await fetch(WEATHER_API_URL);
+                const weatherData = await response.json();
+                const weatherContent = `
+                    <p>${weatherData.name}: ${weatherData.weather[0].description}</p>
+                    <p>Temperature: ${weatherData.main.temp}°C</p>
+                    <p>Humidity: ${weatherData.main.humidity}%</p>
+                `;
+                weatherDiv.innerHTML = weatherContent || "Weather data not available.";
+            } catch (error) {
+                weatherDiv.innerHTML = "Failed to load weather data.";
+                console.error("Error fetching weather:", error);
+            }
+        }
+
+        // Rotating Content Logic
+        const contentDivs = document.querySelectorAll('.content');
+        let currentIndex = 0;
+
+        function showNextContent() {
+            // Hide current content
+            contentDivs[currentIndex].classList.remove('visible');
+            // Show next content
+            currentIndex = (currentIndex + 1) % contentDivs.length;
+            contentDivs[currentIndex].classList.add('visible');
+        }
+
+        // Initial data fetch
+        fetchRSSFeed();
+        fetchDailyMenu();
+        fetchWeather();
+
+        // Set intervals for fetching new data
+        setInterval(fetchRSSFeed, 300000);  // Fetch RSS feed every 5 minutes
+        setInterval(fetchDailyMenu, 86400000);  // Fetch menu once daily
+        setInterval(fetchWeather, 600000);  // Fetch weather every 10 minutes
+
+        // Rotate content every 2 minutes (120000 ms)
+        setInterval(showNextContent, 120000);
+    </script>
+</body>
+</html>
