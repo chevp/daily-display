@@ -24,9 +24,9 @@ Content Sources:
 
 ## 4. Front-End Display
 
-Create a webpage or application that rotates between these three types of content every 2 minutes.
-You can use JavaScript to handle the transitions between screens. Set intervals to change the content every 2 minutes.
-Use CSS for styling to ensure the content looks clean and readable on the screen.
+- Create a webpage or application that rotates between these three types of content every 2 minutes.
+- You can use JavaScript to handle the transitions between screens. Set intervals to change the content every 2 minutes.
+- Use CSS for styling to ensure the content looks clean and readable on the screen.
 
 ## 5. Automatic Updates
 
@@ -47,11 +47,10 @@ Design each view to fit the content being displayed:
 - **RSS News Feed View:** A scrollable or static display of news headlines and summaries.
 - **Daily Menu View:** A simple list showing breakfast, lunch, and dinner items.
 - **Weather View:** Show current temperature, weather conditions (sunny, cloudy, etc.), and perhaps a forecast for the day.
-
-The layout should be clean and easy to read from a distance.
+- The layout should be clean and easy to read from a distance.
 
 ## 8. System Updates and Maintenance
 
 - **Daily Menu Update:** To make the daily menu easily updatable, use Google Sheets or a similar service where the user can edit the menu daily. Ensure the system fetches the updated menu automatically from the cloud without requiring manual intervention.
 - **RSS and Weather:** These can be automated with scheduled fetches (e.g., every 15 minutes for the RSS feed and weather API).
-- 
+
