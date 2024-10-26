@@ -1,4 +1,7 @@
+
 # DailyDisplay
+
+**Homepage:** [https://chevp.github.io/daily-display/index.html](https://chevp.github.io/daily-display/index.html)
 
 ## 1. Determine the Layout and Sequence
 
@@ -10,47 +13,52 @@
 
 ## 2. Components to Build the Feed
 
-- **RSS News Feed:** You'll need an RSS feed reader that fetches news articles and formats them for display.
-- **Daily Menu:** A simple text file, spreadsheet, or a Google Sheet that you can easily update, which will be read and displayed.
-- **Weather Forecast:** Use a weather API (like OpenWeatherMap) to fetch and display the current weather.
+- **RSS News Feed:** Uses an RSS feed reader to fetch and format news articles for display.
+- **Daily Menu:** A simple, updateable text file, spreadsheet, or Google Sheet that is read and displayed.
+- **Weather Forecast:** Uses a weather API (like OpenWeatherMap) to fetch and display the current weather.
 
 ## 3. Backend Design
 
-Content Sources:
+**Content Sources:**
 
-- **RSS Feed:** Choose the RSS feed you want (e.g., from news websites) and use an RSS feed reader library to fetch articles.
-- **Daily Menu:** Store the daily menu in a cloud-based file (Google Sheets, CSV, or a database) that can be easily edited by anyone. Google Sheets is a good option since it's easy to update from any device.
-- **Weather API:** Use a weather API to fetch the current forecast, which can update in real-time or periodically.
+- **RSS Feed:** Choose an RSS feed (e.g., from news websites) and use an RSS feed reader library to fetch articles.
+- **Daily Menu:** Store the daily menu in a cloud-based file (Google Sheets, CSV, or a database) that is easy to edit. Google Sheets is recommended for easy, real-time updates.
+- **Weather API:** Use a weather API to fetch the current forecast, updating in real-time or periodically.
 
 ## 4. Front-End Display
 
-- Create a webpage or application that rotates between these three types of content every 2 minutes.
-- You can use JavaScript to handle the transitions between screens. Set intervals to change the content every 2 minutes.
-- Use CSS for styling to ensure the content looks clean and readable on the screen.
+- Create a webpage or application that rotates between these content types every 2 minutes.
+- Use JavaScript to manage transitions between screens with set intervals to change content.
+- Apply CSS for styling to ensure readability and a clean layout on the screen.
 
 ## 5. Automatic Updates
 
 - **RSS Feed:** Use JavaScript or a backend (Python or Node.js) to periodically fetch the latest articles.
-- **Daily Menu:** If using Google Sheets, you can use its API to automatically pull the latest content and display it on the screen. The file would be easy to update, and the changes would reflect in real-time without needing to change the code.
+- **Daily Menu:** Use Google Sheets API to pull the latest content and reflect changes in real-time without code updates.
 - **Weather Forecast:** Call the weather API every 2-5 minutes to fetch the latest weather data.
 
 ## 6. Implementation Tools
 
-- **RSS Feed:** You can use JavaScript libraries like rss-parser or backend tools (like Python’s feedparser) to handle this.
-- **Menu:** A Google Sheets API connection or reading a simple CSV file can be done easily with JavaScript or Python.
-- **Weather API:** Use JavaScript (or Python) to call a weather API like OpenWeatherMap and display it on the screen.
+- **RSS Feed:** JavaScript libraries like `rss-parser` or backend tools (like Python’s `feedparser`) can handle this.
+- **Menu:** Use Google Sheets API or read from a CSV file using JavaScript or Python.
+- **Weather API:** Use JavaScript (or Python) to call a weather API like OpenWeatherMap and display it.
 
 ## 7. UI Design
 
-Design each view to fit the content being displayed:
+Each view should be tailored for readability and display:
 
 - **RSS News Feed View:** A scrollable or static display of news headlines and summaries.
 - **Daily Menu View:** A simple list showing breakfast, lunch, and dinner items.
-- **Weather View:** Show current temperature, weather conditions (sunny, cloudy, etc.), and perhaps a forecast for the day.
-- The layout should be clean and easy to read from a distance.
+- **Weather View:** Show current temperature, conditions (sunny, cloudy, etc.), and a daily forecast if desired.
+- Aim for a clean, easy-to-read layout for visibility from a distance.
 
 ## 8. System Updates and Maintenance
 
-- **Daily Menu Update:** To make the daily menu easily updatable, use Google Sheets or a similar service where the user can edit the menu daily. Ensure the system fetches the updated menu automatically from the cloud without requiring manual intervention.
-- **RSS and Weather:** These can be automated with scheduled fetches (e.g., every 15 minutes for the RSS feed and weather API).
+- **Daily Menu Update:** Use Google Sheets or similar for daily updates, automatically fetching changes from the cloud.
+- **RSS and Weather Updates:** Set these to automatically refresh at scheduled intervals (e.g., RSS feed every 15 minutes, weather every 2-5 minutes).
+
+---
+
+**Enjoy a streamlined, automated daily information display with DailyDisplay!**
+
 
