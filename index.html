@@ -24,6 +24,17 @@
             width: 100%;
             height: 100%;
             border: none;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            width:100%;
+            height:100%;
+            border:none;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+            z-index:999999;
         }
         .content {
             display: none;
@@ -38,25 +49,19 @@
     <div class="container">
         <!-- RSS News Feed Section -->
         <div id="rssFeed" class="content visible">
-            <iframe 
-                src="https://screenplayer.20min.ch/de/category/1?key=064189e2a35455d82f5c7fc7e49dd9ee"
-                 style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+            <iframe src="https://screenplayer.20min.ch/de/category/1?key=064189e2a35455d82f5c7fc7e49dd9ee">
             </iframe>
         </div>
 
         <!-- Google Sheet Menu Section -->
         <div id="menuPlan" class="content">
-            <iframe 
-                src="https://docs.google.com/spreadsheets/d/1sgT3ZtcmVfAoRZhfBuET1SUF4wFthZV9VTAdCFwXDbE/edit?gid=0#gid=0"
-                 style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+            <iframe src="https://docs.google.com/spreadsheets/d/1sgT3ZtcmVfAoRZhfBuET1SUF4wFthZV9VTAdCFwXDbE/edit?gid=0#gid=0">
             </iframe>
         </div>
 
         <!-- Weather Forecast Section -->
         <div id="weatherForecast" class="content">
-            <iframe 
-                src="https://api.wo-cloud.com/content/widget/?geoObjectKey=6112695&language=en&region=US&timeFormat=HH:mm&windUnit=mph&systemOfMeasurement=imperial&temperatureUnit=fahrenheit"
-                 style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+            <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=6112695&language=en&region=US&timeFormat=HH:mm&windUnit=mph&systemOfMeasurement=imperial&temperatureUnit=fahrenheit"></iframe>
             </iframe>
         </div>
     </div>
